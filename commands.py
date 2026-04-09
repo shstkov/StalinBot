@@ -56,6 +56,7 @@ async def to_shoot(ctx: SlashContext, user: User):
     await ctx.send("https://klipy.com/gifs/stalin-photoshop-1")
 
 async def to_voice(ctx: SlashContext):
+    await ctx.author.voice.channel.connect()
     audio = AudioVolume("rasstreliat.mp3")
     while play_song:
         await ctx.voice_state.play(audio)
