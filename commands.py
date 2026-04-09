@@ -1,6 +1,9 @@
 from typing import Callable, Coroutine, Dict, List, Union
 from interactions import Client, Member, OptionType, Permissions, Role, SlashCommand, SlashCommandOption, SlashContext, User
+from interactions.api.voice.audio import AudioVolume
 import roles
+
+play_song = True
 
 async def send_to_gulag(member: Member):
     await member.remove_roles(member.roles)
@@ -52,6 +55,11 @@ async def to_shoot(ctx: SlashContext, user: User):
     await ctx.send(f"{user.display_name} был расстрелян! Это величайшая победа нашей великой родины, товарищи! Ура!")
     await ctx.send("https://klipy.com/gifs/stalin-photoshop-1")
 
+async def to_voice(ctx: SlashContext):
+    audio = AudioVolume("rasstreliat.mp3")
+    while play_song:
+        await ctx.voice_state.play(audio)
+
 def new_cmd(bot: Client, name: str, desc: str, permission: Permissions, options: List[Union[SlashCommandOption, Dict]], callback: Callable[..., Coroutine]):
     bot.add_interaction(
         SlashCommand(
@@ -99,6 +107,16 @@ def init(bot: Client):
     )
     # /освободитьизгулага [user]
     # /запугать [user] [time]
+
+    # /коммунизм
+    new_cmd(
+        bot=bot,
+        name="коммунизм",
+        desc="КОММУНИЗМ!",
+        permission=Permissions.ADMINISTRATOR,
+        callback=to_voice
+    )
+
     # /расстрелять [user]
     new_cmd(
         bot=bot,
