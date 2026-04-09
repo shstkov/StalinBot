@@ -8,9 +8,9 @@ async def send_to_gulag(member: Member):
     await member.send("https://tenor.com/view/%D0%BC%D1%83%D0%B4%D0%B8%D0%BB%D0%B0-%D1%81%D1%81%D1%81%D1%80-ussr-stalin-mudila-gif-16990551258572186886")
 
 async def shoot(member: Member):
-    await member.ban(reason="РАССТРЕЛЯН")
     await member.send("https://klipy.com/gifs/stalin-photoshop-1")
-
+    await member.ban(reason="РАССТРЕЛЯН")
+    
 def is_user_on_gulag(member: Member) -> bool:
     return member.has_role(roles.get_gulag_role())
 
