@@ -57,7 +57,7 @@ async def to_shoot(ctx: SlashContext, user: User):
 
 async def to_voice(ctx: SlashContext):
     await ctx.author.voice.channel.connect()
-    audio = AudioVolume("rasstreliat.mp3")
+    audio = AudioVolume("rasstreliat.wav")
     while play_song:
         await ctx.voice_state.play(audio)
 
