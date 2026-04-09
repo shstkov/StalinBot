@@ -115,6 +115,7 @@ def init(bot: Client):
         name="коммунизм",
         desc="КОММУНИЗМ!",
         permission=Permissions.ADMINISTRATOR,
+        options=[],
         callback=to_voice
     )
 
